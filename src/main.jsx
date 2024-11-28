@@ -5,4 +5,4 @@ import {BrowserRouter} from "react-router-dom"
 import Routing_App from './POC/Routing_App.jsx'
 import User from './useEffect/User.jsx'
 
-createRoot(document.getElementById('root')).render(<BrowserRouter><User></User></BrowserRouter>)
+createRoot(document.getElementById('root')).render(<BrowserRouter><App></App></BrowserRouter>)

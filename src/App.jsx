@@ -8,7 +8,6 @@ import { Routes,Route } from 'react-router-dom'
 function App() {
   return (
     <>
-      <h1>Wa Clone</h1>
       <Routes>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/' element={<Home></Home>}></Route>
