@@ -1,4 +1,5 @@
 import React from 'react'
+import { Fingerprint, LogIn } from 'lucide-react'
 
 function Login() {
   return (
@@ -13,9 +14,13 @@ function Login() {
     <div className='bg-[#eff2f5] h-[calc(100vh-220px) relative]'>
         <div className='bg-white h-[80%] w-[60%] absolute top-[103px] left-[326px] shadow-2xl
         flex flex-col justify-center items-center gap-4 rounded-r-2xl rounded-l-2xl'>
-            <div>Sign In</div>
-            <div>SignIn with your Google Account</div>
-            <button>Sign In with Google</button >
+            <Fingerprint strokeWidth={1} className='h-20 w-20 text-[#04a784] mb-12'></Fingerprint>
+            <div className='font-bold'>Sign In</div>
+            <div className='font-bold'>SignIn with your Google Account</div>
+            <button className='flex gap-2 bg-[#04a784] p-3 rounded-lg mt-2'>
+                <div className='font-bold'>Sign In with Google</div>
+                <LogIn></LogIn>
+            </button >
         </div>
     </div>
  </>
