@@ -1,7 +1,19 @@
 import React from 'react'
 import { Fingerprint, LogIn } from 'lucide-react'
+import { Navigate, useNavigate } from 'react-router-dom';
+import { signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider } from 'firebase/auth';
+import { auth } from '../../firebase';
 
-function Login() {
+function Login(props) {
+    const setisLoggedIn = props.setisLoggedIn;
+    const navigate = useNavigate();
+    const handleLogin = async() =>{
+        const result = await signInWithPopup(auth,new GoogleAuthProvider);
+        console.log(auth);
+        setisLoggedIn(true);
+       navigate('/');
+    }
   return (
     <>
     <div className='h-[220px] bg-[#04a784]'>
@@ -17,7 +29,7 @@ function Login() {
             <Fingerprint strokeWidth={1} className='h-20 w-20 text-[#04a784] mb-12'></Fingerprint>
             <div className='font-bold'>Sign In</div>
             <div className='font-bold'>SignIn with your Google Account</div>
-            <button className='flex gap-2 bg-[#04a784] p-3 rounded-lg mt-2'>
+            <button className='flex gap-2 bg-[#04a784] p-3 rounded-lg mt-2' onClick={handleLogin}>
                 <div className='font-bold'>Sign In with Google</div>
                 <LogIn></LogIn>
             </button >
