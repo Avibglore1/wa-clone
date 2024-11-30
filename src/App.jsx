@@ -7,18 +7,18 @@ import PageNotFound from './Components/PageNotFound';
 import ProtectedRoute from './Components/ProtectedRoute';
 
 function App() {
-    const [isloggedIn,setisLoggedIn] = useState(false);
+   
   return (
    <>
     <Routes>
-        <Route path='/' element={<ProtectedRoute isloggedIn={isloggedIn}>
-            <Home setisLoggedIn={setisLoggedIn}></Home>
+        <Route path='/' element={<ProtectedRoute>
+            <Home></Home>
         </ProtectedRoute>}></Route>
 
-        <Route path='/login' element={<Login setisLoggedIn={setisLoggedIn}></Login>}></Route>
+        <Route path='/login' element={<Login></Login>}></Route>
 
-        <Route path='/chat/:uniqueId' element={<ProtectedRoute isloggedIn={isloggedIn}>
-            <Chat isloggedIn={isloggedIn}></Chat>
+        <Route path='/chat/:uniqueId' element={<ProtectedRoute >
+            <Chat></Chat>
             </ProtectedRoute>}></Route>
         <Route path='*' element={<PageNotFound></PageNotFound>}></Route>   
     </Routes>

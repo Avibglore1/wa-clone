@@ -5,6 +5,7 @@ import { signInWithPopup } from 'firebase/auth';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { auth, db } from '../../firebase';
 import { doc, setDoc } from 'firebase/firestore';
+import { useAuth } from './AuthContext';
 
 async function createUser(authData){
     const userObject = authData.user;
@@ -20,13 +21,21 @@ async function createUser(authData){
     console.log('user added');
 }
 
-function Login(props) {
-    const setisLoggedIn = props.setisLoggedIn;
+function Login() {
+    const {setUserData} = useAuth();
     const navigate = useNavigate();
     const handleLogin = async() =>{
         const userData = await signInWithPopup(auth,new GoogleAuthProvider);
-        createUser(userData);
-        setisLoggedIn(true);
+       await createUser(userData);
+       const userObject = userData.user;
+       const {uid,photoURL,displayName,email} = userObject;
+       setUserData({
+        id: uid,
+        profile_pic:photoURL,
+        name:displayName,
+        email
+       })
+
        navigate('/');
     }
   return (

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth, storage } from '../../firebase';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import ChatPanel from './ChatPanel';
 
 const handleChange=(e)=>{
   const img = e.target.files[0];
@@ -35,7 +36,8 @@ function Home(props) {
     <>
         <div>Home</div>
         {/* <input type='file' accept='image/png image/jpeg image/webp' onChange={handleChange}></input> */}
-        <button onClick={handleLogout}>Logout</button>
+        <ChatPanel></ChatPanel>
+        {/* <button onClick={handleLogout}>Logout</button> */}
     </>
     
   )

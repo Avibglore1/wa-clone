@@ -1,10 +1,11 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 function ProtectedRoute(props){
-    const isloggedIn = props.isloggedIn
+   const {userData} = useAuth()
 const children = props.children;
-if (isloggedIn){
+if (userData){
     return children
     
 }else{
