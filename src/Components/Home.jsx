@@ -34,13 +34,16 @@ function Home(props) {
         navigate('/login');
     }
   return (
-    <>
-        <div>Home</div>
+    <main className='w-full h-screen bg-[#E3E1DB]'>
+
         {/* <input type='file' accept='image/png image/jpeg image/webp' onChange={handleChange}></input> */}
-        <ChatPanel></ChatPanel>
-        <Chat></Chat>
+        <div className='bg-[#eff2f5] w-full h-screen shadow-md flex'>
+            <ChatPanel></ChatPanel>
+            <Chat></Chat>
+        </div>
+        
         {/* <button onClick={handleLogout}>Logout</button> */}
-    </>
+    </main>
     
   )
 }

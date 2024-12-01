@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { db } from '../../firebase';
 import { ArrowLeft, CircleFadingPlusIcon, MessageSquare, UserRoundIcon } from 'lucide-react';
 import Profile from './Profile';
+import UserCard from './UserCard';
 
 function ChatPanel() {
   const [users,setuser] = useState([]);
@@ -30,7 +31,7 @@ function ChatPanel() {
   }
   
   return(
-    <div>
+    <div className='bg-white w-[30vw]'>
     <div className='bg-gray-400 py-2 px-4 border-r  flex justify-between items-center gap-2'>
         <button onClick={() => {setShowProfile(true)}}>
             <img src={users.photoURL || 'default-user.jpg'} alt='profile-picture'
@@ -44,13 +45,10 @@ function ChatPanel() {
         </div>
     </div>
         {
-            isLoading? <div>..Loading</div>: <div className='flex flex-col gap-2'>
+            isLoading? <div>..Loading</div>: <div className='flex flex-col gap-3'>
             {
                 users.map(userObj =>(
-                    <div key={userObj.id} className='flex gap-2'>
-                        <img src={userObj.userdata.profile_pic} className='h-8 w-8 rounded-full' alt=''></img>
-                        <div>{userObj.userdata.name}</div>
-                    </div>    
+                     <UserCard userObj={userObj}></UserCard>
                 ))
             }
         </div>

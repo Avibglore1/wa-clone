@@ -22,8 +22,12 @@ async function createUser(authData){
 }
 
 function Login() {
-    const {setUserData} = useAuth();
+    const {setUserData, userData} = useAuth();
     const navigate = useNavigate();
+    if(userData!=null){
+        navigate('/');
+        return <></>
+    }
     const handleLogin = async() =>{
         const userData = await signInWithPopup(auth,new GoogleAuthProvider);
        await createUser(userData);
