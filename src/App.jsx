@@ -11,15 +11,16 @@ function App() {
   return (
    <>
     <Routes>
-        <Route path='/' element={<ProtectedRoute>
+        <Route path='/' element={
             <Home></Home>
-        </ProtectedRoute>}></Route>
+        }></Route>
 
         <Route path='/login' element={<Login></Login>}></Route>
 
-        <Route path='/chat/:uniqueId' element={<ProtectedRoute >
+        <Route path='/chat/:uniqueId' element={
             <Chat></Chat>
-            </ProtectedRoute>}></Route>
+        }></Route>
+
         <Route path='*' element={<PageNotFound></PageNotFound>}></Route>   
     </Routes>
    

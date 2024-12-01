@@ -3,8 +3,14 @@ import { useParams } from 'react-router-dom'
 
 function Chat() {
 const params = useParams();
+console.log('chat params',params);
+if(params.uniqueId){
+  return  (
+    <h2>Chat: {params.uniqueId} </h2>
+  )
+}
   return (
-    <div>Chat :{params.uniqueId}</div>
+    <h2>Empty Screen</h2>
   )
 }
 
