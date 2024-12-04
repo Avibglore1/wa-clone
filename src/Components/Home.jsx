@@ -1,48 +1,66 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
-import { signOut } from 'firebase/auth';
-import { auth, storage } from '../../firebase';
+import { storage } from "../../firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import ChatPanel from './ChatPanel';
 import ChatWindow from './ChatWindow';
 
-const handleChange=(e)=>{
-  const img = e.target.files[0];
-  const storageRef =  ref(storage,'/profile');
-  const updatedTask = uploadBytesResumable(storageRef,img);
-  updatedTask.on('state_changed',progressCB,errorCB,finishedCB);
-  function progressCB(data){
-    console.log(data);
-  }
-  function errorCB(err){
-    console.log('err',err);
-  }
-  function finishedCB(){
-    console.log('sucessfuly file uploaded');
-    getDownloadURL(updatedTask.snapshot.ref).then(function(url){
-      console.log('url',url)
-    })
-  }
-}
+function Home() {
+  // const handleChange = (e) => {
+  //   console.log("Change Event");
+  //   const img = e.target.files[0];
 
-function Home(props) {
-    const setisLoggedIn = props.setisLoggedIn
-    const navigate = useNavigate();
-    const handleLogout = async() =>{
-        await signOut(auth);
-        setisLoggedIn(false)
-        navigate('/login');
-    }
+  //   // address 
+  //   const storageRef = ref(storage, "/profile" + Math.random());
+
+  //   // strorage task    
+  //   const uploadTask = uploadBytesResumable(storageRef, img);
+  //   console.log("upload task ")
+  //   // developer
+  //   uploadTask.on("state_changed", progressCB, errorCB, finishedCb);
+
+  //   // upload 
+  //   function progressCB(data) {
+  //     console.log("data", data);
+  //   }
+  //   // if error
+  //   function errorCB(err) {
+  //     // 
+  //     console.log("err", err);
+  //   }
+  //   // on success
+  //   function finishedCb() {
+  //     console.log("successfully file uploaded");
+  //     getDownloadURL(uploadTask.snapshot.ref).then(function (url) {
+  //       console.log("url", url);
+  //     })
+
+  //   }
+
+
+  // }
+
   return (
-    <div className='w-full h-screen bg-[#E3E1DB]'>
+    <main className='relative w-full h-screen bg-[#E3E1DB]'>
 
-        <div className='bg-[#eff2f5] w-full h-screen shadow-md flex'>
-            <ChatPanel></ChatPanel>
-            <ChatWindow></ChatWindow>
+      {/* <input type='file'
+        accept='image/png image/jpeg image/webp'
+        onChange={handleChange}
+      ></input> */}
+      <div className="absolute top-0 h-[130px] bg-primary  w-full" />
+      
+      <div className="absolute p-5 top-0 h-screen w-full">
+        <div className="bg-background w-full h-full shadow-md flex">
+          {/* conditonal rehne waale hai -> chat list , profile */}
+          <ChatPanel />
+          {/* <div>Empty Chat</div>:<div>Individual CHat</div> */}
+          <ChatWindow></ChatWindow>
         </div>
-        
-    </div>
-    
+      </div>
+
+
+
+    </main>
+
   )
 }
 
